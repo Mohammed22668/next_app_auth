@@ -1,7 +1,5 @@
-import LeftSidebar from "@/components/leftsidebar/LeftSideBar";
-import Navbar from "@/components/Shared/NavBar";
-
-import SideBar from "@/components/Shared/SideBar";
+import NavBarDesign from "@/components/Shared/NavBarDesign";
+import SideBarDesign from "@/components/Shared/SideBarDesign";
 import React from "react";
 
 export default function RootLayout({
@@ -10,13 +8,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="background-light850_dark100 relative">
-      <Navbar />
-      <div className="">
-        <section className=" pr-[280px] pt-[100px] pb-5 max-lg:pr-[15px]  max-sm:pr-5 ">
-          <div className="pl-5 w-full">{children}</div>
-        </section>
+    <div className="flex h-screen" dir="rtl">
+      <SideBarDesign />
+      <div className="flex-1 mr-64 bg-gray-100 dark:bg-gray-900 transition-all duration-300">
+        <NavBarDesign />
+        <main className="flex-1 p-6 bg-gray-100">{children}</main>
       </div>
-    </main>
+    </div>
   );
 }
