@@ -44,3 +44,13 @@ export async function userExists(params: UserExistsParams) {
     return false;
   }
 }
+
+export async function getUserCount() {
+  try {
+    connectToDatabase();
+    const userCount = await User.find().countDocuments();
+    return { userCount };
+  } catch (error) {
+    console.log(error);
+  }
+}

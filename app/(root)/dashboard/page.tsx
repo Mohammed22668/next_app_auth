@@ -1,10 +1,13 @@
-import UserInfo from "@/components/Info/UserInfo";
+import DashboardCards from "@/components/Cards/DashboardCards";
+import { getUserCount } from "@/lib/actions/user.action";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+  const users = await getUserCount();
+
   return (
     <div>
-      <UserInfo />
+      <DashboardCards userCount={users?.userCount} />
     </div>
   );
 };
