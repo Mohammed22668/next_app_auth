@@ -8,31 +8,31 @@ export const themes = [
 
 export const sidebarLinks: SidebarLink[] = [
   {
-    imgURL: "/assets/icons/home.svg",
-    route: "/",
-    label: "الرئيسية",
+    imgURL: "/assets/icons/dashboard.svg",
+    route: "/dashboard",
+    label: "لوحة التحكم",
   },
   {
-    imgURL: "/assets/icons/users.svg",
-    route: "/about",
-    label: "من نحن",
+    imgURL: "/assets/icons/clinic.svg",
+    route: "/clinic",
+    label: "العيادات ",
   },
   {
-    imgURL: "/assets/icons/star.svg",
-    route: "/categories",
-    label: "الفئات",
+    imgURL: "/assets/icons/calender.svg",
+    route: "/bookings",
+    label: "الحجوزات  ",
+  },
+  {
+    imgURL: "/assets/icons/patient.svg",
+    route: "/patients",
+    label: "المراجعين ",
+  },
+  {
+    imgURL: "/assets/icons/surgical.svg",
+    route: "/surgical",
+    label: "العمليات ",
   },
 
-  {
-    imgURL: "/assets/icons/suitcase.svg",
-    route: "/library",
-    label: "المكتبة",
-  },
-  {
-    imgURL: "/assets/icons/document.svg",
-    route: "/privacypolicy",
-    label: "سياسة الخصوصية",
-  },
   {
     imgURL: "/assets/icons/user.svg",
     route: "/profile",
@@ -43,29 +43,29 @@ export const sidebarLinks: SidebarLink[] = [
 //  Admin Sidebar routes
 export const adminSidebarLinks: SidebarLink[] = [
   {
-    imgURL: "/assets/icons/home.svg",
-    route: "/users",
-    label: "المستخدمين",
+    imgURL: "/assets/icons/dashboard.svg",
+    route: "/dashboard",
+    label: "لوحة التحكم",
   },
   {
-    imgURL: "/assets/icons/users.svg",
-    route: "/categorymanage",
-    label: "ادارة الفئات",
+    imgURL: "/assets/icons/clinic.svg",
+    route: "/clinic",
+    label: "العيادات ",
   },
   {
-    imgURL: "/assets/icons/users.svg",
-    route: "/subcategorymanage",
-    label: "ادارة التصنيفات ",
+    imgURL: "/assets/icons/calender.svg",
+    route: "/bookings",
+    label: "الحجوزات  ",
   },
   {
-    imgURL: "/assets/icons/star.svg",
-    route: "/storiesmanage",
-    label: "ادارة القصص",
+    imgURL: "/assets/icons/patient.svg",
+    route: "/patients",
+    label: "المراجعين ",
   },
   {
-    imgURL: "/assets/icons/suitcase.svg",
-    route: "/partsmanage",
-    label: "ادارة الفصول",
+    imgURL: "/assets/icons/surgical.svg",
+    route: "/surgical",
+    label: "العمليات ",
   },
 
   {

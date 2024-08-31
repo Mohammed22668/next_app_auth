@@ -2,6 +2,9 @@ import { Schema, models, model, Document } from "mongoose";
 
 export interface IClinic extends Document {
   name: string;
+
+  governorate: string;
+  specialization: string;
   address: string;
   phone: string;
   email: string;
@@ -18,6 +21,8 @@ export interface IClinic extends Document {
 
 const clinicSchema = new Schema({
   name: { type: String, required: true },
+  governorate: { type: String },
+  specialization: { type: String },
   address: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String },

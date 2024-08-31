@@ -6,6 +6,8 @@ import { revalidatePath } from "next/cache";
 
 interface CreateClinicParams {
   name: string;
+  governorate: string;
+  specialization: string;
   address: string;
   phone: string;
   email: string;
@@ -17,9 +19,21 @@ interface CreateClinicParams {
 export async function createClinic(params: CreateClinicParams) {
   try {
     connectToDatabase();
-    const { name, address, phone, email, status, logoImage, path } = params;
+    const {
+      name,
+      governorate,
+      specialization,
+      address,
+      phone,
+      email,
+      status,
+      logoImage,
+      path,
+    } = params;
     const clinic = await Clinic.create({
       name,
+      governorate,
+      specialization,
       address,
       phone,
       email,
@@ -39,6 +53,26 @@ export async function getAllClinics() {
     connectToDatabase();
     const clinics = await Clinic.find({});
     return { clinics };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getClinicCount() {
+  try {
+    connectToDatabase();
+    const clinicCount = await Clinic.find().countDocuments();
+    return { clinicCount };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteClinic(_id: string) {
+  try {
+    connectToDatabase();
+    const clinic = await Clinic.findByIdAndDelete(_id);
+    return JSON.stringify(clinic);
   } catch (error) {
     console.error(error);
   }

@@ -59,6 +59,8 @@ const CreateClinic = () => {
     resolver: zodResolver(formClinicSchema),
     defaultValues: {
       name: "",
+      governorate: "",
+      specialization: "",
       address: "",
       phone: "",
       email: "",
@@ -78,6 +80,8 @@ const CreateClinic = () => {
 
       await createClinic({
         name: values.name,
+        governorate: values.governorate,
+        specialization: values.specialization,
         address: values.address,
         phone: values.phone,
         email: values.email,
@@ -116,6 +120,102 @@ const CreateClinic = () => {
                   className="border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-200"
                   {...field}
                 />
+              </FormControl>
+              <FormMessage className="text-red-600 mt-1" />
+            </FormItem>
+          )}
+        />
+        {/* التخصص */}
+
+        <FormField
+          control={form.control}
+          name="specialization"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-semibold text-gray-700">
+                تخصص العيادة
+              </FormLabel>
+              <FormControl>
+                <Select onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger className="bg-white border border-gray-300 rounded-md shadow-sm text-gray-700 focus:border-green-500 focus:ring focus:ring-green-200">
+                      <SelectValue placeholder="اختر التخصص" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-white border border-gray-300 rounded-md shadow-sm">
+                    <SelectItem value="اسنان">اسنان</SelectItem>
+                    <SelectItem value="باطنية">باطنية</SelectItem>
+                    <SelectItem value="قلب">قلب</SelectItem>
+                    <SelectItem value="عظام">عظام</SelectItem>
+                    <SelectItem value="اطفال">اطفال</SelectItem>
+                    <SelectItem value="نسائية وتوليد">نسائية وتوليد</SelectItem>
+                    <SelectItem value="جلدية">جلدية</SelectItem>
+                    <SelectItem value="عيون">عيون</SelectItem>
+                    <SelectItem value="أنف وأذن وحنجرة">
+                      أنف وأذن وحنجرة
+                    </SelectItem>
+                    <SelectItem value="أعصاب">أعصاب</SelectItem>
+                    <SelectItem value="مسالك بولية">مسالك بولية</SelectItem>
+                    <SelectItem value="جراحة عامة">جراحة عامة</SelectItem>
+                    <SelectItem value="تجميل">تجميل</SelectItem>
+                    <SelectItem value="طب العائلة">طب العائلة</SelectItem>
+                    <SelectItem value="غدد صماء">غدد صماء</SelectItem>
+                    <SelectItem value="أورام">أورام</SelectItem>
+                    <SelectItem value="روماتيزم">روماتيزم</SelectItem>
+                    <SelectItem value="طب نفسي">طب نفسي</SelectItem>
+                    <SelectItem value="طب الطوارئ">طب الطوارئ</SelectItem>
+                    <SelectItem value="تغذية">تغذية</SelectItem>
+                    <SelectItem value="جهاز هضمي">جهاز هضمي</SelectItem>
+                    <SelectItem value="صدرية">صدرية</SelectItem>
+                    <SelectItem value="أمراض الدم">أمراض الدم</SelectItem>
+                    <SelectItem value="تخدير">تخدير</SelectItem>
+                    <SelectItem value="أمراض معدية">أمراض معدية</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage className="text-red-600 mt-1" />
+            </FormItem>
+          )}
+        />
+
+        {/* المحافظة */}
+
+        <FormField
+          control={form.control}
+          name="governorate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-semibold text-gray-700">
+                المحافظة
+              </FormLabel>
+              <FormControl>
+                <Select onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger className="bg-white border border-gray-300 rounded-md shadow-sm text-gray-700 focus:border-green-500 focus:ring focus:ring-green-200">
+                      <SelectValue placeholder="اختر المحافظة" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-white border border-gray-300 rounded-md shadow-sm">
+                    <SelectItem value="بغداد">بغداد</SelectItem>
+                    <SelectItem value="أربيل">أربيل</SelectItem>
+                    <SelectItem value="الأنبار">الأنبار</SelectItem>
+                    <SelectItem value="بابل">بابل</SelectItem>
+                    <SelectItem value="البصرة">البصرة</SelectItem>
+                    <SelectItem value="دهوك">دهوك</SelectItem>
+                    <SelectItem value="القادسية">القادسية</SelectItem>
+                    <SelectItem value="ديالى">ديالى</SelectItem>
+                    <SelectItem value="ذي قار">ذي قار</SelectItem>
+                    <SelectItem value="السليمانية">السليمانية</SelectItem>
+                    <SelectItem value="صلاح الدين">صلاح الدين</SelectItem>
+                    <SelectItem value="كركوك">كركوك</SelectItem>
+                    <SelectItem value="كربلاء">كربلاء</SelectItem>
+                    <SelectItem value="ميسان">ميسان</SelectItem>
+                    <SelectItem value="المثنى">المثنى</SelectItem>
+                    <SelectItem value="النجف">النجف</SelectItem>
+                    <SelectItem value="نينوى">نينوى</SelectItem>
+                    <SelectItem value="واسط">واسط</SelectItem>
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage className="text-red-600 mt-1" />
             </FormItem>

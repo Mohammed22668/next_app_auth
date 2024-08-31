@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FiChevronDown } from "react-icons/fi";
 import {
@@ -10,6 +11,9 @@ import { FcFullTrash } from "react-icons/fc";
 import { FaClinicMedical, FaUserPlus } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { deleteClinic } from "@/lib/actions/clinic.action";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 interface AllClinicsParams {
   name: string;
@@ -20,7 +24,35 @@ interface AllClinicsParams {
   logoImage: string;
 }
 const TableAllClinics = ({ getAllClinics }: any) => {
+  const router = useRouter();
   const parseGetAllClinic = JSON.parse(getAllClinics);
+
+  async function handelClinicDelete(_id: string) {
+    try {
+      Swal.fire({
+        title: "حذف العيادة",
+        text: "لن تكون قادرا على استرجاعها مرة اخرى",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "نعم,قم بالحذف",
+      }).then(async (result) => {
+        // Add async here
+        if (result.isConfirmed) {
+          await deleteClinic(_id);
+          router.push("/clinic");
+          Swal.fire({
+            title: "تم الحذف",
+            text: "تم حذف الفصل",
+            icon: "success",
+          });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -131,18 +163,19 @@ const TableAllClinics = ({ getAllClinics }: any) => {
             </ul>
           </div> */}
         </div>
-        <label className="sr-only">Search</label>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
-            <AiOutlineSearch className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-          </div>
+        <label className="sr-only">البحث</label>
+      
+        <div className="">
+        
           <input
             type="text"
             id="table-search"
             className="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for items"
           />
+      
         </div>
+        
       </div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -151,10 +184,17 @@ const TableAllClinics = ({ getAllClinics }: any) => {
               اسم العيادة
             </th>
             <th scope="col" className="px-6 py-3 text-lg">
+              التخصص
+            </th>
+
+            <th scope="col" className="px-6 py-3 text-lg">
               الحالة
             </th>
             <th scope="col" className="px-6 py-3 text-lg">
               رقم الهاتف
+            </th>
+            <th scope="col" className="px-6 py-3 text-lg">
+              المحافظة
             </th>
             <th scope="col" className="px-6 py-3 text-lg">
               العنوان
@@ -163,7 +203,7 @@ const TableAllClinics = ({ getAllClinics }: any) => {
               Logo
             </th>
             <th scope="col" className="px-6 py-3 text-lg">
-              Action
+              خيارات
             </th>
           </tr>
         </thead>
@@ -179,18 +219,25 @@ const TableAllClinics = ({ getAllClinics }: any) => {
               >
                 {clinic.name}
               </th>
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {clinic.specialization}
+              </th>
               <td className="px-6 py-4">
                 {clinic.status === "active" ? (
-                  <span className="bg-green-500 text-white py-1 px-2 rounded-full text-xs">
-                    {clinic.status}
+                  <span className="bg-green-500 text-white py-1 px-2 rounded-full text-md">
+                    فعال
                   </span>
                 ) : (
-                  <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
-                    {clinic.status}
+                  <span className="bg-red-500 text-white py-1 px-2 rounded-full text-md">
+                    غير فعال
                   </span>
                 )}
               </td>
               <td className="px-6 py-4">{clinic.phone}</td>
+              <td className="px-6 py-4">{clinic.governorate}</td>
               <td className="px-6 py-4">{clinic.address}</td>
               <td className="px-6 py-4">
                 <Image
@@ -211,6 +258,7 @@ const TableAllClinics = ({ getAllClinics }: any) => {
                 <button
                   className="inline-flex items-center text-red-600 bg-white border border-red-600 focus:outline-none hover:bg-red-100 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-gray-800 dark:text-red-500 dark:border-red-600 dark:hover:bg-gray-700 dark:focus:ring-red-500"
                   aria-label="Delete"
+                  onClick={() => handelClinicDelete(clinic._id)}
                 >
                   <FcFullTrash className="w-5 h-5" />
                 </button>
