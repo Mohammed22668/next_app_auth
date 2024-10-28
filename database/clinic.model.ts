@@ -2,7 +2,6 @@ import { Schema, models, model, Document } from "mongoose";
 
 export interface IClinic extends Document {
   name: string;
-
   governorate: string;
   specialization: string;
   address: string;

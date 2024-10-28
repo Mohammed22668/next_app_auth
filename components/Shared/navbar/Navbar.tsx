@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -13,11 +12,6 @@ import {
 } from "@/constants";
 import { adminSidebarLinks } from "@/constants";
 const Navbar = async () => {
-
-  
-
- 
-
   return (
     <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5 py-3 px-6 shadow-light-300 dark:shadow-none sm:px-12">
       <Link href="/" className="flex items-center gap-1">
@@ -37,11 +31,8 @@ const Navbar = async () => {
       {/* <GlobalSearch /> */}
       <div className="flex-between gap-5">
         <Theme />
-     
 
-      
-          <MobileNav sideBarLinks={sidebarLinks} />
-     
+        <MobileNav sideBarLinks={sidebarLinks} />
       </div>
     </nav>
   );
